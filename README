@@ -1,0 +1,25 @@
+TTL UART w/ flow control from the pandora ext port
+--------------------------------------------------
+
+Parts list:
+- 1* 74LVC14AD SO-14 "Hex inverting Schmitt trigger with 5 V tolerant input"
+- 1* 0.1u 0603 cap
+- 2* NX3008NBKW,115 SOT-323 n-ch mosfet
+- 2* 4k7 4x0603 resistor arrays
+- pandora ext port connector
+
+The PCB is shared at oshpark:
+https://oshpark.com/shared_projects/iGVFJWpa
+remember to pick the 0.8mm service
+
+This takes out the UART2 (not the debug UART but the one with flow control)
+of the pandora ext port into the familiar 6-pin 0.1" header (*)
+and converts it to 2.8V levels and provides the ext port power as the VCC.
+
+Inputs are 5V tolerant so you can ignore the VCC and interface with 
+CMOS devices running at 2.8 - 4.2V. 2.8V might be out-of-spec as a one
+for 5V CMOS devices but it will not harm the device if you try anyways.
+It should be fine for 5V TTL devices.
+
+(* N.B. the 6th pin is RTS and not DTR as you might've hoped, but you might
+be able to workaround this in software if you want that... )
